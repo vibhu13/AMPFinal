@@ -9,7 +9,7 @@ function getJobDetailsTupple() {
 	try {
 		$servername = "localhost";
 		$username = "root";
-		$password = "Km7Iv80l";
+		$password = "";
 		$db = "amp";
 		$conn = new PDO("mysql:host=$servername;dbname=$db", $username, $password);
 		$stmt = $conn->prepare("select jt.json as jobTuple , jd.json as jobDetail from amp.job_tuples jt, amp.job_details jd where jt.JOB_ID=jd.JOB_ID");

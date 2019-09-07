@@ -7,7 +7,7 @@ class Subscription {
     public function updateSubscription($email,$subscriptionFlag)  {
         $servername = "localhost";
         $username = "root";
-        $password = "Km7Iv80l";
+        $password = "";
         $db = "amp";
         try {
            $conn = new PDO("mysql:host=$servername;dbname=amp", $username, $password);
@@ -31,4 +31,4 @@ $subscriptionFlag = $_POST["subscriptionFlag"];
 $obj = new Subscription();
 $obj->updateSubscription($email,$subscriptionFlag);
 getHeaders();
-echo json_encode(true);
+echo json_encode(array("status"=>true));

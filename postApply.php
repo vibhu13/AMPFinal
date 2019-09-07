@@ -8,15 +8,16 @@ class Apply {
         if(!$reapply) {
             $this->saveApply($email , $jobId);
         } else {
-            return false;
+            http_response_code(500);
+            return array("status"=>false);
         }
-        return true;
+        return array("status"=>true);
     }
 
     private function saveApply($email , $jobId){
         $servername = "localhost";
         $username = "root";
-        $password = "Km7Iv80l";
+        $password = "";
         $db = "amp";
         try {
            $conn = new PDO("mysql:host=$servername;dbname=amp", $username, $password);
@@ -36,7 +37,7 @@ class Apply {
     private function checkReApply($email , $jobId) {
         $servername = "localhost";
         $username = "root";
-        $password = "Km7Iv80l";
+        $password = "";
         $db = "amp";
         try {
            $conn = new PDO("mysql:host=$servername;dbname=amp", $username, $password);
@@ -48,7 +49,8 @@ class Apply {
            $stmt->execute();
            $response = $stmt->fetch(PDO::FETCH_ASSOC);
            if($response["count"] > 0) {
-		throw new Exception("Reapply Sceanrio");
+		return true;
+//		throw new Exception(json_encode(array("msg"=>"Reapply Sceanrio")));
            } else {
                 return false;
            }
@@ -62,6 +64,6 @@ class Apply {
 $email= $_POST["email"];
 $jobId = $_POST["jobId"];
 $obj = new Apply();
-$response = $obj->doApply($email,$jobId);
 getHeaders();
+$response = $obj->doApply($email,$jobId);
 echo json_encode($response);
