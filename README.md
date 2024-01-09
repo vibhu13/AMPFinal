@@ -1,3 +1,5 @@
+Google AMP-Project : https://amp.dev
+
 # PhpAmp4Email
 PhpAmp4Email
 
